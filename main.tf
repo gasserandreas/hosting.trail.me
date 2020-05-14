@@ -81,6 +81,16 @@ module "test_cloudfront" {
   acm_certification_arn      = module.test_certificate.arn_hosting
 }
 
+# static bucket
+module "static_bucket" {
+  source = "./s3-hosting"
+
+  app_region       = var.app_region
+  account_id       = var.account_id
+  app_name         = var.app_name
+  root_domain_name = "static-trailme.gasserandreas.com"
+}
+
 # utils bucket
 module "utils" {
   source           = "./s3-bucket"
